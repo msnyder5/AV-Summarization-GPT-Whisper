@@ -6,13 +6,13 @@ AV Summarization GPT Whisper works in a 3-step process.
 
 ### 1. Get Audio Transcript
 
-First, we need to get a transcript of the audio file. If it is a YouTube video, there is the option of using YouTube's caption tracks. Otherwise, process the file using Whisper.
+First, we need to get a transcript of the audio file. If it is a YouTube video, there is the option of using YouTube's caption tracks. By default,  YouTube captions are only used if they are creator-provided (not auto-generated). Otherwise, we process the file using Whisper.
 
 ### 2. Get Truncated Transcript
 
 In order to process with GPT-3, we must shorten the transcript if it is over a certain length. We do this via extractive text summarization. First, we preserve a set number of sentences at the front and back of the transcript. Then, we use the summarizer library to score every sentence. The scores are calculated using a global word frequency dictionary, with additional points awarded if the sentence shares words with the title. We keep adding the next top sentence (in the correct position) until the token limit is reached.
 
-This method is not without it's flaws. Extractive text summarization by it's nature means that some sentences will lose their context. Also, the method of ranking sentences is somewhat archaic. However, I chose this method allows us to process arbitrarily long transcripts.
+This method is not without it's flaws. Extractive text summarization by it's nature means that some sentences will lose their context. Also, the method of ranking sentences is somewhat archaic. However, I chose this method because it allows us to process arbitrarily long transcripts.
 
 ### 3. Generate Summary
 
