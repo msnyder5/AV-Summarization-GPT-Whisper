@@ -2,8 +2,6 @@
 
 **AV Summarization GPT Whisper** is a python library for summarizing audio/video files. There is also built in support for YouTube, with support for YouTube caption tracks.
 
-## Explanation of Process
-
 AV Summarization GPT Whisper works in a 3-step process.
 
 ### 1. Get Audio Transcript
