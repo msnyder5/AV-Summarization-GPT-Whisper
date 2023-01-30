@@ -44,9 +44,11 @@ class SummaryHandler:
 class YouTubeHandler:
     def __init__(self,
                  youtubeurl: str,
+                 youtube_path: str = YOUTUBE_PATH,
                  youtubecaptions: bool = YOUTUBE_CAPTIONS,
                  youtubeautocaptions: bool = YOUTUBE_AUTO_CAPTIONS):
         self.youtubeurl: str = youtubeurl
+        self.youtube_path: str = youtube_path
         self.youtubecaptions: bool = youtubecaptions
         self.youtubeautocaptions: bool = youtubeautocaptions
     
@@ -61,7 +63,7 @@ class YouTubeHandler:
             return SummaryHandler(transcript, title)
         else:
             download_stream = video.streams.filter(only_audio=True, file_extension='mp4').first()
-            filepath = download_stream.download()
+            filepath = download_stream.download(output_path=self.youtube_path)
             newhandler = AVHandler(filepath, title)
             return newhandler.get_summary_handler()
     

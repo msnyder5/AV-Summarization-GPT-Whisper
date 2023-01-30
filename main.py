@@ -2,6 +2,7 @@ import argparse
 from argparse import Namespace
 from handlers import AVHandler, YouTubeHandler
 from config import *
+from pathlib import Path
 
 def parse_args() -> Namespace:
     parser = argparse.ArgumentParser(description='Summarize an AV file, or a YouTube video. You must provide ONE of filepath or yturl.')
@@ -32,7 +33,7 @@ def main():
     transcript_handler = AVHandler(args.filepath, args.title, args.whispermodel) if args.filepath else YouTubeHandler(args.youtubeurl)
     summary_handler = transcript_handler.get_summary_handler()
     summary = summary_handler.get_summary()
-    with open(args.output, 'w') as outfile:
+    with open(Path(OUTPUT_PATH) / f'{summary_handler.title} Summary.txt', 'w') as outfile:
         outfile.write(summary)
 
 if __name__ == '__main__':
