@@ -16,6 +16,10 @@ or
 pip install openai openai-whisper pytube nltk summarizer
 ```
 
+### pytube error
+
+The `pytube` library has an error that will prevent this program from working. To fix this, navigate to `captions.py` in the `pytube` site-package folder. Add `import json` to the top of `captions.py` to fix the error.
+
 ## Usage
 
 You can change a lot of the default options in `config.py`. This includes the prompts that are used, and some other useful options.
